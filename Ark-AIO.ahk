@@ -1131,8 +1131,12 @@ return
 QTHotkeyFunction:
 	if (QTonInput && WinActive("ahk_class UnrealWindow")){
 		
-		if (!CheckInv())
-			Send {f}
+		if (!CheckInv()){
+			if(QTfromyouInput && QTdropInput)
+				Send {i}
+			else
+				Send {f}
+		}
 		While (!CheckInv() && i<1000)
 		{
 			i++
@@ -1174,7 +1178,10 @@ QTHotkeyFunction:
 				MouseClick, Left, X2, Y, 1, 3
 			}
 			Sleep 50
-			Send {f}
+			if(QTfromyouInput && QTdropInput)
+				Send {i}
+			else
+				Send {f}
 		}
 	}
 return
